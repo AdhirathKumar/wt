@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .contents {
+      padding-left: 510px;
+    }
+    h1 {
+      font-family: "Trirong", serif;
+    }
+    label {
+      font-family: "Trirong", serif;
+    }
+    label {
+			display: inline-block;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 50%;
+		}
+    
+  </style>
+  <head>
+    <script>
+      function validateForm() {
+        var username = document.forms["myForm"]["username"].value;
+        var email = document.forms["myForm"]["email"].value;
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var password = document.forms["myForm"]["password"].value;
+        var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+        var mobile = document.forms["myForm"]["mobile"].value;
+        var mobileRegex = /^[6-9]\d{9}$/;
+
+        if (username == "") {
+          alert("Username must be filled out");
+          return false;
+        }
+
+        if (username.length < 6) {
+          alert("Username must be of atleast 6 characters");
+          return false;
+        }
+
+        if (email == "") {
+          alert("Email must be filled out");
+          return false;
+        }
+
+        if (!emailRegex.test(email)) {
+				  alert("Please enter a valid email address in the format 'yourname@domain.com'");
+				  return false;
+			  }
+  
+        if (!mobileRegex.test(mobile)) {
+				  alert("Please enter a valid mobile number of 10 digits starting with any number from 6 to 9");
+				  return false;
+			  }
+        
+        if (password == "") {
+          alert("Password must be filled out");
+          return false;
+        }
+  
+        if (password.length < 8) {
+          alert("Password must be at least 8 characters long");
+          return false;
+        }
+
+        if (!passwordRegex.test(password)) {
+				alert("Password must be at least 6 characters long and contain at least one lowercase letter, one uppercase letter, and one digit");
+				return false;
+			  }
+
+        if (password != confirmpassword) {
+          alert("The passwords do not match! Check and try again.");
+          return false;
+        }
+
+      }
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Trirong"
+    />
+    <title>Registration Page - Student Management System</title>
+  </head>
+  <body>
+    <main>
+      <div class="contents"><h1>Registration</h2>
+        <form name="myForm" onsubmit="return validateForm()" method="post" action="">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+          <br>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+          <br>
+          <label for="mobile">Mobile Number:</label>
+          <input type="number" id="mobile" name="mobile" required />
+          <br>
+          <label for="date of birth">Date of birth:</label>
+          <input type="date" id="date of birth" name="date of birth" required />
+          <br>
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address" required />
+          <br>
+          <label for="gender">Gender:</label>
+          <br>
+          <input type="radio" id="male" name="Male" value="Male" />
+          <label for="male">Male</label><br />
+          <input type="radio" id="female" name="Female" value="Female" />
+          <label for="female">Female</label><br />
+          <input type="radio" id="others" name="Others" value="Others" />
+          <label for="others">Others</label><br />
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+          <br>
+          <label for="confirmpassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmpassword"
+            name="confirmpassword"
+            required
+          />
+          <br /><br />
+          <input type="submit" value="Submit" />
+        </form></div>
+    </main>
+  </body>
+</html>
