@@ -1,0 +1,25 @@
+import java.sql.*;
+public class Web{
+   public static void main(String[] args) throws Exception{
+      Connection connect = null;
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/world","root", "Adhi@2003");
+      Statement statement = connect.createStatement();
+      //insert
+      statement.execute("create table student (s_id integer , s_name varchar(20) , s_dept varcahr(5))");
+      statement.execute("insert into student values(501 , 'Seshu','cse')");
+      statement.execute("insert into student values(502 , 'Adhirath','ece')");
+      statement.execute("insert into student values(503 , 'Shashank','mech')");
+      statement.execute("insert into student values(504 , 'Satyesh','cse')");
+      ResultSet resultSet = statement.executeQuery("select * from student");
+      while(resultSet.next()){
+         System.out.println("Student ID: " +resultSet.getString(1));
+         System.out.println("Student Name: " +resultSet.getString(2));
+         System.out.println("Student Department: " +resultSet.getString(3));
+         System.out.println();
+         }
+      resultSet.close();
+      statement.close();
+      connect.close();
+   }
+}
