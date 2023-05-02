@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type= "text/xsl" href= "web.xsl"?>
+<!DOCTYPE bookstore SYSTEM "web.dtd">
+<bookstore>
+<book category="Computer Science">
+<title>Introduction to Algorithms</title>
+<author>Thomas H. Cormen</author>
+<year>2009</year>
+<price>50.00</price>
+</book>
+<book category="Fiction">
+<title>The Great Gatsby</title>
+<author>F. Scott Fitzgerald</author>
+<year>1925</year>
+<price>10.00</price>
+</book>
+<book category="Fiction">
+<title>To Kill a Mockingbird</title>
+<author>Harper Lee</author>
+<year>1960</year>
+<price>12.50</price>
+</book>
+<book category="Non-Fiction">
+<title>The Power of Now</title>
+<author>Eckhart Tolle</author>
+<year>1997</year>
+<price>15.00</price>
+</book>
+</bookstore>
+
+##############~~ DTD Schema ~~##############
+
+<!ELEMENT bookstore (book*)>
+<!ELEMENT book (title, author, year, price)>
+<!ATTLIST book category CDATA #REQUIRED>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+
+##############~~ XLS Schema ~~##############
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:template match="/">
+<html>
+<head>
+<title>Online Bookstore</title>
+</head>
+<body>
+<h1>Online Bookstore</h1>
+<table border="1">
+<tr bgcolor="#b4e8e8">
+<th>Title</th>
+<th>Author</th>
+<th>Year</th>
+<th>Price</th>
+</tr>
+<xsl:for-each select="bookstore/book">
+<tr bgcolor="#d8f2f2">
+<td><xsl:value-of select="title"/></td>
+<td><xsl:value-of select="author"/></td>
+<td><xsl:value-of select="year"/></td>
+<td><xsl:value-of select="price"/></td>
+</tr>
+</xsl:for-each>
+</table>
+</body>
+</html>
+</xsl:template>
+</xsl:stylesheet>
+
+##############~~ XS Schema ~~##############
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="bookstore">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="book" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="title" type="xs:string"/>
+<xs:element name="author" type="xs:string"/>
+<xs:element name="year" type="xs:gYear"/>
+<xs:element name="price" type="xs:decimal"/>
+</xs:sequence>
+<xs:attribute name="category" type="xs:string" use="required"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
