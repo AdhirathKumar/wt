@@ -25,4 +25,8 @@ DriverManager.getConnection("jdbc:mysql://localhost:3306/javalab","root","Passwo
 				}else{
 					out.print("Sorry Incorrect Entry");
 				}} catch (Exception e) {
-				out.write("Error in JDBC connectivity : "+e);}}}
+				out.write("Error in JDBC connectivity : "+e);
+				}}
+			public static void main(String[] args) {
+				System.out.println("Continue to Browser");
+			}}
